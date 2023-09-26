@@ -1,2 +1,1 @@
-echo "# RicardoGraca" >> README.md
 
