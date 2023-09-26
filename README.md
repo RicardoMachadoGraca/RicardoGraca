@@ -1,9 +1,9 @@
-$echo "# RicardoGraca" >> README.md
+echo "# RicardoGraca" >> README.md
 
-$git init
+git init
 
-$git add README.md
-$git commit -m "first commit"
-$git branch -M main
-$git remote add origin https://github.com/RicardoMachadoGraca/RicardoGraca.git
-$git push -u origin main
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/RicardoMachadoGraca/RicardoGraca.git
+git push -u origin main
