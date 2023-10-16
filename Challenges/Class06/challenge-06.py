@@ -15,3 +15,4 @@ print(ip_info)
 # It executes 'lshw -short' and print
 hardware_info = os.system("lshw -short")
 print(hardware_info)
+
