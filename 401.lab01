@@ -1,0 +1,32 @@
+# PowerShell Script to Enable Automatic OS Updates on Windows 10
+
+# Check if the script is running with administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Host "Please run this script with administrative privileges."
+    Exit
+}
+
+# Check if automatic updates are already enabled
+$automaticUpdates = Get-WmiObject -Class Win32_ComputerSystem
+if ($automaticUpdates.AutomaticUpdateNotificationsSetting -eq 4) {
+    Write-Host "Automatic OS updates are already enabled."
+    Exit
+}
+
+# Enable automatic OS updates
+Write-Host "Enabling automatic OS updates..."
+$automaticUpdates.AutomaticUpdateNotificationsSetting = 4
+$automaticUpdates.Put()
+Write-Host "Automatic OS updates are now enabled."
+
+# Force a check for updates and initiate the update installation
+Write-Host "Checking for updates and initiating installation..."
+Invoke-Expression -Command "Start-Process -Wait -FilePath 'ms-settings:windowsupdate-action'"
+Write-Host "Windows updates check and installation initiated."
+
+# Display a completion message
+Write-Host "Automatic OS updates have been enabled."
+
+# Optional: You can add a restart command here if you want to automatically restart the computer.
+
+# End of script
